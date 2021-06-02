@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnderecoService {
 
+    private final static String ENDERECO_NAO_ENCONTRADO = "Endereco não encontrado com o ID :: %d";
+
     @Autowired
     private EnderecoRepository enderecoRepository;
 
@@ -21,7 +23,7 @@ public class EnderecoService {
     public Endereco atualizarEndereco(Endereco p) throws NotFoundException {
 
         Endereco endereco = this.enderecoRepository.findById(p.getEnderecoId())
-                .orElseThrow(() -> new NotFoundException(String.format("Endereco não encontrado com o ID :: %d", p.getEnderecoId())));
+                .orElseThrow(() -> new NotFoundException(String.format(ENDERECO_NAO_ENCONTRADO, p.getEnderecoId())));
 
         endereco.setPessoa(endereco.getPessoa());
         endereco.setEstado(endereco.getEstado());
@@ -37,13 +39,13 @@ public class EnderecoService {
 
     public void deletarEndereco(Integer enderecoId) throws NotFoundException {
         Endereco endereco = this.enderecoRepository.findById(enderecoId)
-                .orElseThrow(() -> new NotFoundException(String.format("Endereco não encontrado com o ID :: %d", enderecoId)));
+                .orElseThrow(() -> new NotFoundException(String.format(ENDERECO_NAO_ENCONTRADO, enderecoId)));
         this.enderecoRepository.delete(endereco);
     }
 
     public Endereco buscarEnderecoId(Integer enderecoId) throws NotFoundException {
         return this.enderecoRepository.findById(enderecoId)
-                .orElseThrow(() -> new NotFoundException(String.format("Endereco não encontrado com o ID :: %d", enderecoId)));
+                .orElseThrow(() -> new NotFoundException(String.format(ENDERECO_NAO_ENCONTRADO, enderecoId)));
     }
 
     public Page<Endereco> listarEnderecos(int page, int size) {

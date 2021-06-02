@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PessoaService {
 
+    private final static String PESSOA_NAO_ENCONTRADA = "Pessoa não encontrada com o ID :: %d";
+
     @Autowired
     private PessoaRepository pessoaRepository;
 
@@ -21,7 +23,7 @@ public class PessoaService {
     public Pessoa atualizarPessoa(Pessoa p) throws NotFoundException {
 
         Pessoa pessoa = this.pessoaRepository.findById(p.getPessoaId())
-                                             .orElseThrow(() -> new NotFoundException(String.format("Pessoa não encontrada com o ID :: %d", p.getPessoaId())));
+                                             .orElseThrow(() -> new NotFoundException(String.format(PESSOA_NAO_ENCONTRADA, p.getPessoaId())));
 
         pessoa.setNome(p.getNome());
         pessoa.setEmail(p.getEmail());
@@ -35,13 +37,13 @@ public class PessoaService {
 
     public void deletarPessoa(Integer pessoaId) throws NotFoundException {
         Pessoa pessoa = this.pessoaRepository.findById(pessoaId)
-                .orElseThrow(() -> new NotFoundException(String.format("Pessoa não encontrada com o ID :: %d", pessoaId)));
+                .orElseThrow(() -> new NotFoundException(String.format(PESSOA_NAO_ENCONTRADA, pessoaId)));
         this.pessoaRepository.delete(pessoa);
     }
 
     public Pessoa buscarPessoaId(Integer pessoaId) throws NotFoundException {
         return this.pessoaRepository.findById(pessoaId)
-                .orElseThrow(() -> new NotFoundException(String.format("Pessoa não encontrada com o ID :: %d", pessoaId)));
+                .orElseThrow(() -> new NotFoundException(String.format(PESSOA_NAO_ENCONTRADA, pessoaId)));
     }
 
     public Page<Pessoa> listarPessoas(int page, int size) {

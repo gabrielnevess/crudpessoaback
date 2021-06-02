@@ -1,5 +1,6 @@
 package com.example.crudpessoa.controller;
 
+import com.example.crudpessoa.exception.BadRequestException;
 import com.example.crudpessoa.exception.NotFoundException;
 import com.example.crudpessoa.model.Estado;
 import com.example.crudpessoa.service.EstadoService;
@@ -29,7 +30,7 @@ public class EstadoController {
     }
 
     @DeleteMapping(value = "/deletarEstado/{estadoId}")
-    public ResponseEntity<Estado> deletarEstado(@PathVariable(value = "estadoId") Integer estadoId) throws NotFoundException {
+    public ResponseEntity<Estado> deletarEstado(@PathVariable(value = "estadoId") Integer estadoId) throws NotFoundException, BadRequestException {
         this.estadoService.deletarEstado(estadoId);
         return new ResponseEntity<Estado>(HttpStatus.OK);
     }
