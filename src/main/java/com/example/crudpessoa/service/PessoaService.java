@@ -39,7 +39,7 @@ public class PessoaService {
         this.pessoaRepository.delete(pessoa);
     }
 
-    public Pessoa buscarPeloId(Integer pessoaId) throws NotFoundException {
+    public Pessoa buscarPessoaId(Integer pessoaId) throws NotFoundException {
         return this.pessoaRepository.findById(pessoaId)
                 .orElseThrow(() -> new NotFoundException(String.format("Pessoa não encontrada com o ID :: %d", pessoaId)));
     }

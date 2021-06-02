@@ -33,7 +33,7 @@ public class EstadoService {
         this.estadoRepository.delete(estado);
     }
 
-    public Estado buscarPeloId(Integer estadoId) throws NotFoundException {
+    public Estado buscarEstadoId(Integer estadoId) throws NotFoundException {
         return this.estadoRepository.findById(estadoId)
                 .orElseThrow(() -> new NotFoundException(String.format("Estado não encontrado com o ID :: %d", estadoId)));
     }

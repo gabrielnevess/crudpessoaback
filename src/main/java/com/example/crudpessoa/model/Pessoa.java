@@ -20,12 +20,12 @@ import java.sql.Timestamp;
 @ToString
 public class Pessoa implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pessoa_id")
     private Integer pessoaId;
 
     @JsonManagedReference(value = "endereco_pessoa")
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
     private Endereco endereco;
 
     @NotBlank(message = "Nome do usuário é obrigatório")

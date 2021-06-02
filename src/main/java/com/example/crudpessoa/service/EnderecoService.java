@@ -41,7 +41,7 @@ public class EnderecoService {
         this.enderecoRepository.delete(endereco);
     }
 
-    public Endereco buscarPeloId(Integer enderecoId) throws NotFoundException {
+    public Endereco buscarEnderecoId(Integer enderecoId) throws NotFoundException {
         return this.enderecoRepository.findById(enderecoId)
                 .orElseThrow(() -> new NotFoundException(String.format("Endereco não encontrado com o ID :: %d", enderecoId)));
     }

@@ -23,7 +23,7 @@ import java.sql.Timestamp;
 @ToString
 public class Endereco implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "endereco_id")
     private Integer enderecoId;
 

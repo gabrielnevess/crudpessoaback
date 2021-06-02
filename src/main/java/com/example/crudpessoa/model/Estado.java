@@ -21,7 +21,7 @@ import java.sql.Timestamp;
 @ToString
 public class Estado implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "estado_id")
     private Integer estadoId;
 
