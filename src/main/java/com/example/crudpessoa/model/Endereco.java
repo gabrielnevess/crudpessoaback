@@ -33,7 +33,7 @@ public class Endereco implements Serializable {
     private Pessoa pessoa;
 
     @JsonManagedReference(value = "endereco_estado")
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "estado_id", unique = true)
     private Estado estado;
 
