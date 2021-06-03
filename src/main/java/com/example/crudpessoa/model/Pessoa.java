@@ -1,5 +1,6 @@
 package com.example.crudpessoa.model;
 
+import com.example.crudpessoa.validator.UniqueEmail;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
@@ -18,6 +19,10 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@UniqueEmail(
+        fieldId = "pessoaId",
+        fieldEmail = "email"
+)
 public class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +30,7 @@ public class Pessoa implements Serializable {
     private Integer pessoaId;
 
     @JsonManagedReference(value = "endereco_pessoa")
-    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.REMOVE)
+    @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
     private Endereco endereco;
 
     @NotBlank(message = "Nome do usuário é obrigatório")
